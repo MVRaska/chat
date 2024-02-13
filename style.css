@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/******** section ********/
+#aktivniKorisnik {
+    position: relative;
+    left: 85%;
+}
+#aktivniKorisnik span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: lime !important;
+}
+p {
+    display: inline-block;
+    margin-right: 5px;
+    color: blueviolet;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+
+/******** header ********/
+h1 {
+    text-align: center;
+    color: blueviolet;
+}
+
+header, nav, main, section {
+    margin-bottom: 20px;
+}
+
+
+/******** nav ********/
+nav {
+    margin: 40px 0;
+}
+nav span {
+    display: inline-block;
+    margin: 0.5%;
+    background-color: blueviolet;
+    border-radius: 4px;
+    color: white;
+    width: 22%;
+    padding: 5px;
+    text-align: center;
+}
+nav span:hover {
+    cursor: pointer;
+}
+span#general {
+    background: rgb(78, 4, 148);
+}
+
+h3 {
+    margin: 10px 0;
+    text-align: center;
+    color: blueviolet;
+}
+
+
+/******** main ********/
+main {
+    margin: 0 5% 40px;
+}
+
+ul {
+    list-style: none;
+}
+
+/* li.ostali */
+li {
+    background: rgb(231, 219, 241);
+    border-radius: 0 15px 15px 15px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    color: blueviolet;
+    width: 80%;
+    position: relative;
+}
+
+/* poruke aktivnog korisnika */
+.aktivno {
+    background: rgb(250, 199, 199);
+    border-radius: 15px 0 15px 15px;
+    margin-bottom: 10px;
+    padding: 5px 15px;
+    color: blueviolet;
+    position: relative;
+    left: 20%;
+}
+
+/* ispis aktivnog korisnika */
+div {
+    width: 80%;
+    padding: 40px 5% 40px 20px; 
+    background: pink;
+    color: blueviolet;
+    border-radius: 15px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+img {
+    opacity: 15%;
+    position: absolute;
+    bottom: 7px;
+    right: 5%;
+    width: 20px;
+    cursor: pointer;
+}
+
+
+/******** forme ********/
+form {
+    margin: 10px 0;
+    width:  100%;
+}
+button {
+    padding: 6px;
+    width: 25%;
+    margin-left: 5px;
+    background: blueviolet;
+    color: white;
+    border: 0px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+input, textarea {
+    padding: 4px;
+    width: 68%;
+    border: 2px solid blueviolet;
+    border-radius: 4px;
+    color: blueviolet;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+input:focus, textarea:focus {
+    border: 4px solid blueviolet;
+    outline: none;
+}
+input[type='color'] {
+    padding: 0;
+}
+#textPoruka {
+    margin: 0; /* Postavljanje margina na nulu */
+    vertical-align: middle; /* Postavljanje vertikalne ravnoteže */
+}
+
+
+/******** responsive ********/
+@media only screen and (max-width: 520px) {
+    nav span {
+        width: 45%;
+    }
+}

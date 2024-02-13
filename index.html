@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITBootcamp chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="aktivniKorisnik">
+        <p></p> <span></span>
+    </section>
+
+    <header>
+        <h1>ITBootcamp Chat</h1>
+    </header>
+
+    <nav>
+        <h3>Choose a chatroom</h3>
+        <span id="general">#general</span>
+        <span>#js</span>
+        <span>#homeworks</span>
+        <span>#tests</span>
+    </nav>
+
+    <main>
+        <ul>
+
+        </ul>
+    </main>
+
+    <form id="changColor">
+        <input type="color" name="" id="picker" value="#ffffff">
+        <button id='color'>Update color</button>
+    </form>
+
+    <form id="message">
+        <textarea name="textPoruka" id="textPoruka" rows="1" placeholder="Your message..."></textarea>
+        <button id='send'>Send</button>
+    </form>
+
+    <form action="" id="formUserName">
+        <input type="tex" name="" id="textUserName" placeholder="Update username">
+        <button id='update'>Update</button>
+    </form>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-firestore.js"></script>
+
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyA_9v7wlpnH1wnIpa9IXAco6nOlRQQKk8Y",
+        authDomain: "itb-m-b49ab.firebaseapp.com",
+        projectId: "itb-m-b49ab",
+        storageBucket: "itb-m-b49ab.appspot.com",
+        messagingSenderId: "75519357661",
+        appId: "1:75519357661:web:f14bfd92798dc559b62134"
+    };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let db = firebase.firestore();
+    </script>
+
+    <script src="app.js" type="module"></script>
+</body>
+</html>
