@@ -1,5 +1,5 @@
-import {Chatroom} from './chat.js';
-import {chatUI} from './ui.js';
+import { Chatroom } from './chat.js';
+import { chatUI } from './ui.js';
 
 const ul = document.querySelector('ul');
 
@@ -8,7 +8,7 @@ let chatUI1 = new chatUI(ul);
 let inputColor = document.getElementById('picker');
 let btnColor = document.getElementById('color');
 
-let inputPoruka = document.getElementById('textPoruka');
+let inputMessage = document.getElementById('textMessage');
 let btnSend = document.getElementById('send');
 
 let inputUserName = document.getElementById('textUserName');
@@ -16,43 +16,41 @@ let btnUpdate = document.getElementById('update');
 
 let spans = document.querySelectorAll('span');
 
-let pAktivniKorisnik = document.querySelector('p');
+let pActiveUser = document.querySelector('p');
 
-
-let noviUsername = 'anonymus';
-if(localStorage.getItem('username')) {
-    noviUsername = JSON.parse(localStorage.getItem('username'));
+let newUsername = 'anonymous';
+if (localStorage.getItem('username')) {
+    newUsername = JSON.parse(localStorage.getItem('username'));
 }
 
-if(localStorage.getItem('color')) {
-    let boja = JSON.parse(localStorage.getItem('color'));
-    document.body.style.background = boja;
-    inputColor.value = boja;
+if (localStorage.getItem('color')) {
+    let color = JSON.parse(localStorage.getItem('color'));
+    document.body.style.background = color;
+    inputColor.value = color;
 }
 
 let room = '#general';
-if(localStorage.getItem('soba')) {
-    room = JSON.parse(localStorage.getItem('soba'));
+if (localStorage.getItem('room')) {
+    room = JSON.parse(localStorage.getItem('room'));
     spans.forEach(span => {
         span.style.background = 'blueviolet';
         spans.forEach(span => {
-            if(span.textContent == room) {
+            if (span.textContent == room) {
                 span.style.background = 'rgb(96, 4, 182)';
             }
-        }); 
+        });
     });
 }
 
-let chatroom = new Chatroom(room, noviUsername);
+let chatroom = new Chatroom(room, newUsername);
 
-pAktivniKorisnik.innerHTML = noviUsername;
+pActiveUser.innerHTML = newUsername;
 
-chatroom.getChats(data => {  
+chatroom.getChats(data => {
     chatUI1.list.appendChild(chatUI1.templateLI(data, chatroom.userName));
 });
 
 spans.forEach(span => {
-
     span.addEventListener('click', () => {
         chatUI1.deleteUl();
         spans.forEach(otherSpan => {
@@ -61,38 +59,36 @@ spans.forEach(span => {
 
         span.style.background = 'rgb(96, 4, 182)';
 
-        localStorage.setItem('soba', JSON.stringify(span.textContent));
+        localStorage.setItem('room', JSON.stringify(span.textContent));
 
         chatroom.room = span.textContent;
-        chatroom.getChats(data => {  
+        chatroom.getChats(data => {
             chatUI1.list.appendChild(chatUI1.templateLI(data, chatroom.userName));
         });
     });
 });
 
-
 btnSend.addEventListener('click', e => {
     e.preventDefault();
 
-    if(inputPoruka.value.trim() != '') {
-        chatroom.addChat(inputPoruka.value);
+    if (inputMessage.value.trim() != '') {
+        chatroom.addChat(inputMessage.value);
     }
-    
-    inputPoruka.value = ''; //ili  inputPoruka.reset();  na formi resetuje sva polja 
-});
 
+    inputMessage.value = ''; // or inputMessage.reset(); will reset all fields in the form
+});
 
 btnUpdate.addEventListener('click', e => {
     e.preventDefault();
     chatroom.userName = inputUserName.value;
 
     localStorage.setItem('username', JSON.stringify(inputUserName.value));
-    
-    chatroom.aktivniKorisnik(inputUserName.value);
+
+    chatroom.activeUser(inputUserName.value);
 
     chatUI1.deleteUl();
-    pAktivniKorisnik.innerHTML = inputUserName.value;
-    chatroom.getChats(data => {  
+    pActiveUser.innerHTML = inputUserName.value;
+    chatroom.getChats(data => {
         chatUI1.list.appendChild(chatUI1.templateLI(data, chatroom.userName));
     });
 
@@ -101,19 +97,19 @@ btnUpdate.addEventListener('click', e => {
 
 btnColor.addEventListener('click', e => {
     e.preventDefault();
-    console.log('oboji');
+    console.log('coloring');
     document.body.style.background = inputColor.value;
 
     localStorage.setItem('color', JSON.stringify(inputColor.value));
 });
 
 ul.addEventListener('click', async e => {
-    if(e.target.tagName == 'IMG') {
+    if (e.target.tagName == 'IMG') {
         let liDelete = e.target.parentNode;
         let docId = e.target.id;
-        console.log('ID dokumenta:', docId);
+        console.log('Document ID:', docId);
 
-        if(liDelete.class == chatroom.userName) {
+        if (liDelete.class == chatroom.userName) {
             chatroom.deleteMsgDB(docId);
         }
 
@@ -121,4 +117,4 @@ ul.addEventListener('click', async e => {
     }
 });
 
-db.collection('chats').onSnapshot(change => {console.log(change);})
+db.collection('chats').onSnapshot(change => { console.log(change); })
