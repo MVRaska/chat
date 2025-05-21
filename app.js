@@ -84,7 +84,7 @@ btnUpdate.addEventListener('click', e => {
 
     localStorage.setItem('username', JSON.stringify(inputUserName.value));
 
-    chatroom.activeUser(inputUserName.value);
+    chatroom.showActiveUser(inputUserName.value);
 
     chatUI1.deleteUl();
     pActiveUser.innerHTML = inputUserName.value;
